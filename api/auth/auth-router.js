@@ -15,7 +15,7 @@ router.post('/register', (req, res) => {
   Users.add(user)
     .then(saved => {
       const token = generateToken(user);
-      res.status(201).json({message: 'login success'});
+      res.status(201).json({message: 'register success'});
     })
     .catch(error => {
       console.log(error);

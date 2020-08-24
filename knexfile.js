@@ -31,7 +31,7 @@ module.exports = {
     }
   },
 
-  development: {
+  production: {
     client: 'pg',
     connection: pgConnection,
     pool: {
