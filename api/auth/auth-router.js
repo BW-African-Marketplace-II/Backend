@@ -6,6 +6,27 @@ const Users = require('./auth-model');
 
 const secrets = require('../../data/config/secret')
 
+router.get('/', (req, res) => {
+  Users.find()
+      .then(users => {
+          res.status(200).json(users);
+      })
+      .catch(err => {
+          res.status(500).json({ message: `failed to get users - ${err}` })
+      })
+})
+
+router.get('/:id', (req, res) => {
+  Users.findById(req.params.id)
+      .then(user => {
+          res.status(200).json(user);
+      })
+      .catch(err => {
+          res.status(500).json({ message: `unable to get user - ${err}` })
+      })
+})
+
+
 router.post('/register', (req, res) => {
   // implement registration
   let user = req.body;
