@@ -3,7 +3,7 @@ exports.up = function(knex) {
       .createTable('users', (tbl) => {
           tbl.increments('id');
           tbl.string('username', 32).unique().notNullable();
-          tbl.string('password', 32).unique().notNullable();
+          tbl.string('password', 256).unique().notNullable();
           tbl.string('email', 32).unique().notNullable();
           tbl.string('location', 32).notNullable();
           tbl.string('userRole').defaultTo('baseUser');
