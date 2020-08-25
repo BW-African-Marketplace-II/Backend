@@ -14,6 +14,13 @@ exports.up = function(knex) {
           tbl.integer('price').notNullable();
           tbl.string('location', 32).notNullable();
           tbl.string('description');
+          tbl
+            .integer('sellerID')
+            .unsigned()
+            .notNullable()
+            .references('id')
+            .inTable('users')
+            .onDelete('CASCADE');
       })
       .createTable('orders', (tbl) => {
           tbl.increments();
