@@ -16,7 +16,7 @@ server.use(express.json());
 
 server.get('/', (req, res) => {
     db('users').select('*')
-        //.fullOuterJoin('users', 'users.id', 'orders.userID')
+        //.fullOuterJoin('users', 'users.id', 'orders.sellerID')
             .then(data => {
                 res.status(200).json(data);
             })
