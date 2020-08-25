@@ -14,6 +14,7 @@ exports.up = function(knex) {
           tbl.integer('price').notNullable();
           tbl.string('location', 32).notNullable();
           tbl.string('description');
+          tbl.boolean('isActive').defaultTo(true);
           tbl
             .integer('sellerID')
             .unsigned()
