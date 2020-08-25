@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Items = require('./items-model')
+const sellerAuth = require('../auth/auth-seller-mw')
 
 router.get('/', (req, res) => {
     Items.find()
@@ -24,8 +25,16 @@ router.get('/:id', (req, res) => {
 
 //middleware here
 //put at bottom
-router.post('/', (req, res) => {
-    
+router.post('/', sellerAuth, (req, res) => {
+    const item = req.body;
+    item.sellerId = req.decodedToken.user.id;
+    Items.add(item)
+        .then(item => {
+            res.status(201).json(item);
+        })
+        .catch(err => {
+            res.status(500).json({ message: `unable to add item - ${err}` })
+          })
 })
 
 module.exports = router;

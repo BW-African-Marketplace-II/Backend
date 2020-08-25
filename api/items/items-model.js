@@ -15,10 +15,9 @@ module.exports = {
     return db("items").where(filter).orderBy("id");
   }
   
-  async function add(user) {
+  async function add(item) {
     try {
-      const [id] = await db("items").insert(user, "id");
-  
+      const [id] = await db("items").insert(item, "id");
       return findById(id);
     } catch (error) {
       throw error;

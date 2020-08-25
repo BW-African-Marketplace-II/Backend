@@ -3,6 +3,12 @@
 **Base Url:** https://af-market.herokuapp.com/
 
 ### /users
+/GET /
+Return all users
+
+/GET /:id
+Return specific user
+
 /POST /register
 {
     "username": string,
@@ -28,6 +34,12 @@ Returns an array of each item object
 /GET /:id
 Returns the item object with that id
 
-/POSTS /
+/POST /
+{
+    "name": string,
+    "price": integer,
+    "location": string,
+    "description":  string
+}
 
 ### /orders
