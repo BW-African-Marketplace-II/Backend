@@ -21,21 +21,21 @@ exports.up = function(knex) {
               .integer('sellerID')
               .unsigned()
               .notNullable()
-              .references('userID')
+              .references('id')
               .inTable('users')
               .onDelete('CASCADE');
           tbl
               .integer('buyerID')
               .unsigned()
               .notNullable()
-              .references('userID')
+              .references('id')
               .inTable('users')
               .onDelete('CASCADE');
           tbl
               .integer('itemID')
               .unsigned()
               .notNullable()
-              .references('itemID')
+              .references('id')
               .inTable('users')
               .onDelete('CASCADE');
       })
