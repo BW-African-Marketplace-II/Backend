@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const db = require('../data/dbConfig');
 const authenticate = require('./auth/authenticate-mw')
 const authRouter = require('./auth/auth-router')
 const itemRouter = require('./items/items-router')
@@ -14,7 +15,12 @@ server.use(cors());
 server.use(express.json());
 
 server.get('/', (req, res) => {
-    res.send('API is up and running')
+    db('users').select('*')
+        //.fullOuterJoin('users', 'users.id', 'orders.userID')
+            .then(data => {
+                res.status(200).json(data);
+            })
+            .catch(err => res.send(err));
 })
 
 server.use('/users', authRouter);
