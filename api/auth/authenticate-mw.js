@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
             if(err) {
                 res.status(401).json({ message: 'authorization failed' });
             } else {
-                req.decodedToken = { decodedToken }
+                req.decodedToken = decodedToken
                 next();
             }
         })

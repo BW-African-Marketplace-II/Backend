@@ -4,7 +4,9 @@ const jwt = require('jsonwebtoken')
 
 const Users = require('./auth-model');
 
-const secrets = require('../../data/config/secret')
+const authenticate = require('./authenticate-mw')
+const secrets = require('../../data/config/secret');
+const itemsModel = require('../items/items-model');
 
 router.get('/', (req, res) => {
   Users.find()
@@ -25,7 +27,6 @@ router.get('/:id', (req, res) => {
           res.status(500).json({ message: `unable to get user - ${err}` })
       })
 })
-
 
 router.post('/register', (req, res) => {
   // implement registration
@@ -62,9 +63,20 @@ router.post('/login', (req, res) => {
     })
 });
 
+router.put('/becomeSeller', authenticate, (req, res) => {
+  Users.update({userRole: 'seller'}, req.decodedToken.user.id)
+    .then(user => {
+      res.status(200).json(user)
+    })
+    .catch(err => {
+      res.status(500).json({ message: `unable to update role - ${err}` })
+    })
+})
+
 function generateToken(user) {
   const payload = {
-    user
+    user: user,
+    userid: user.id
   };
   const options = {
     expiresIn: '1d',

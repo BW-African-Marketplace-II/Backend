@@ -22,4 +22,10 @@ router.get('/:id', (req, res) => {
         })
 })
 
+//middleware here
+//put at bottom
+router.post('/', (req, res) => {
+    
+})
+
 module.exports = router;

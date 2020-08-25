@@ -17,6 +17,9 @@
     "password": string
 }
 
+/PUT /becomeSeller
+Send token as authorization, current logged in user will get the seller role
+
 
 ### /items
 /GET /
@@ -25,6 +28,6 @@ Returns an array of each item object
 /GET /:id
 Returns the item object with that id
 
-.POSTS /
+/POSTS /
 
 ### /orders

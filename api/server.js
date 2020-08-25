@@ -25,6 +25,6 @@ server.get('/', (req, res) => {
 
 server.use('/users', authRouter);
 server.use('/items', itemRouter);
-server.use('/orders', authenticate,orderRouter);
+server.use('/orders', authenticate, orderRouter);
 
 module.exports = server;
