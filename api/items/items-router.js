@@ -30,7 +30,6 @@ router.post('/', sellerAuth, (req, res) => {
     item.sellerId = req.decodedToken.user.id;
     Items.add(item)
         .then(item => {
-            console.log(item)
             res.status(201).json(item);
         })
         .catch(err => {
