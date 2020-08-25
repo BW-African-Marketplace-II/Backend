@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
 //put at bottom
 router.post('/', sellerAuth, (req, res) => {
     const item = req.body;
-    item.sellerId = req.decodedToken.user.id;
+    item.sellerID = req.decodedToken.user.id;
     Items.add(item)
         .then(item => {
             res.status(201).json(item);
