@@ -11,7 +11,7 @@ exports.up = function(knex) {
       .createTable('items', (tbl) => {
           tbl.increments('id');
           tbl.string('name', 32).notNullable();
-          tbl.int('price').notNullable();
+          tbl.integer('price').notNullable();
           tbl.string('location', 32).notNullable();
           tbl.string('description');
       })
