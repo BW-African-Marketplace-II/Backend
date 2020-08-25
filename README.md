@@ -19,6 +19,12 @@
 
 
 ### /items
+/GET /
+Returns an array of each item object
 
+/GET /:id
+Returns the item object with that id
+
+.POSTS /
 
 ### /orders
