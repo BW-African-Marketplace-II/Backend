@@ -17,7 +17,7 @@ module.exports = {
   
   async function add(item) {
     try {
-      const [id] = await db("items").insert(item, "id");
+      const [id] = await db("items").insert(item);
       return findById(id);
     } catch (error) {
       throw error;
