@@ -23,8 +23,7 @@ router.get('/:id', (req, res) => {
         })
 })
 
-//middleware here
-//put at bottom
+
 router.post('/', sellerAuth, (req, res) => {
     const item = req.body;
     item.sellerID = req.decodedToken.user.id;
@@ -34,6 +33,20 @@ router.post('/', sellerAuth, (req, res) => {
         })
         .catch(err => {
             res.status(500).json({ message: `unable to add item - ${err}` })
+          })
+})
+
+router.put('/:id', (req, res) => {
+    
+})
+
+router.delete('/:id', sellerAuth, (req, res) => {
+    Items.remove(req.params.id)
+        .then(deleted => {
+            res.status(200).json({ message: 'delete success' })
+        })
+        .catch(err => {
+            res.status(500).json({ message: `unable to delete item - ${err}` })
           })
 })
 

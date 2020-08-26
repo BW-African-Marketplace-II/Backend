@@ -9,6 +9,8 @@ Return all users
 /GET /:id
 Return specific user
 
+/GET /myProfile
+
 /POST /register
 {
     "username": string,
@@ -26,6 +28,10 @@ Return specific user
 /PUT /becomeSeller
 Send token as authorization, current logged in user will get the seller role
 
+/PUT /
+
+/DELETE /
+
 
 ### /items
 /GET /
@@ -34,7 +40,7 @@ Returns an array of each item object
 /GET /:id
 Returns the item object with that id
 
-/POST /
+/POST / *seller auth*
 {
     "name": string,
     "price": integer,
@@ -42,4 +48,16 @@ Returns the item object with that id
     "description":  string
 }
 
+/PUT /:id
+
+/DELETE
+
 ### /orders
+
+/GET /
+
+/GET /myOrders
+
+/GET /:id
+
+/POST /

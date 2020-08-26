@@ -28,6 +28,18 @@ router.get('/:id', (req, res) => {
       })
 })
 
+//FIX THIS
+router.get('/myProfile', authenticate, (req, res) => {
+  res.status(200).json(req,decodedToken.user)
+  // Users.findById(req.decodedToken.user.id)
+  //   .then(user => {
+  //     res.status(200).json(req.decodedToken.user.id);
+  //   })
+  //   .catch(err => {
+  //     res.status(500).json({ message: `failed to get your profile - ${err}` })
+  // })
+})
+
 router.post('/register', (req, res) => {
   // implement registration
   let user = req.body;
@@ -71,6 +83,11 @@ router.put('/becomeSeller', authenticate, (req, res) => {
     .catch(err => {
       res.status(500).json({ message: `unable to update role - ${err}` })
     })
+})
+
+//needs mw
+router.put('/', (req, res) => {
+
 })
 
 function generateToken(user) {
