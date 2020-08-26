@@ -37,7 +37,18 @@ router.post('/', sellerAuth, (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    
+    Items.edit(req.params.id, req.body)
+        .then(count => {
+            if(count){
+                res.status(200).json({ message: 'update successful', data: req.body })
+            } else {
+                res.status(404).json({ message: ' Id not found.'})
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).json({ error:error.message })
+        })
 })
 
 router.delete('/:id', sellerAuth, (req, res) => {

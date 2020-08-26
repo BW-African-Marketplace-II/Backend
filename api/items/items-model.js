@@ -2,12 +2,20 @@ const db = require('../../data/dbConfig')
 
 module.exports = {
     add,
+    edit,
     find,
     findBy,
     findById,
     remove,
   };
   
+  function edit(id, changes){
+    return db("items")
+      .where( { id: id })
+      .update(changes)
+  }
+
+
   function find() {
     return db("items").select("*").orderBy("id");
   }
