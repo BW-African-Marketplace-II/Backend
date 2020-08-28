@@ -2,11 +2,19 @@ const db = require('../../data/dbConfig');
 
 module.exports = {
     add,
+    edit,
     find,
     findBy,
     findById,
+    remove,
     update,
 };
+
+function edit(id, changes){
+    return db("users")
+      .where( { id: id })
+      .update(changes)
+}
 
 function find(){
     return db("users").select("*").orderBy("id");
@@ -36,3 +44,7 @@ function update(changes, id){
             return findById(id)
         })
 }
+
+function remove(id){
+    return db("users").where({ id }).del();
+  }

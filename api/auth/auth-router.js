@@ -41,7 +41,6 @@ router.get('/myProfile', authenticate, (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  // implement registration
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 8);
   user.password = hash;
@@ -86,8 +85,29 @@ router.put('/becomeSeller', authenticate, (req, res) => {
 })
 
 //needs mw
-router.put('/', (req, res) => {
+router.put('/', authenticate, (req, res) => {
+  Users.edit(req.decodedToken.user.id, req.body)
+      .then(count => {
+          if(count){
+              res.status(200).json({ message: 'update successful', data: req.body })
+          } else {
+              res.status(404).json({ message: ' Id not found.'})
+          }
+      })
+      .catch(error => {
+          console.log(error)
+          res.status(500).json({ error:error.message })
+      })
+})
 
+router.delete('/', authenticate, (req, res) => {
+  Users.remove(req.decodedToken.user.id)
+      .then(deleted => {
+          res.status(200).json({ message: 'delete success' })
+      })
+      .catch(err => {
+          res.status(500).json({ message: `unable to delete user - ${err}` })
+        })
 })
 
 function generateToken(user) {

@@ -36,7 +36,7 @@ router.post('/', sellerAuth, (req, res) => {
           })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', sellerAuth, (req, res) => {
     Items.edit(req.params.id, req.body)
         .then(count => {
             if(count){
