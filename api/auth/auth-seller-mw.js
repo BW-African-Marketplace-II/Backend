@@ -10,11 +10,12 @@ module.exports = (req, res, next) => {
                 res.status(401).json({ message: 'authorization failed' });
             } else {
                 req.decodedToken = decodedToken
-                if (req.decodedToken.user.userRole === 'seller'){
-                    next();
-                } else{
-                    res.status(401).json({ message: `user is a ${req.decodedToken.user.userRole}, not a seller` })
-                }
+                next();
+                // if (req.decodedToken.user.userRole === 'seller'){
+                //     next();
+                // } else{
+                //     res.status(401).json({ message: `user is a ${req.decodedToken.user.userRole}, not a seller` })
+                // }
             }
         })
     } else {
